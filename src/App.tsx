@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { RouteComponentProps } from 'react-router';
 import { Link } from "react-router-dom";
+import * as moment from 'moment';
+
 import ContactsList from './components/ContactsList';
 import ContactCard from './components/ContactCard';
 import ContactForm from './components/ContactForm';
@@ -13,29 +15,29 @@ class App extends Component<{} & RouteComponentProps<{id: any, param: any}>, any
         id: '1',
         name: 'tarek',
         email: 't@a.w',
-        modified: 'today',
-        created: 'yesterday'
+        modified: '05-10-2019 14:56',
+        created: '05-10-2019 14:56'
       },
       {
         id: '2',
         name: 'sabera',
         email: 't@a.w',
-        modified: 'today',
-        created: 'yesterday'
+        modified: '05-10-2019 14:56',
+        created: '05-10-2019 14:56'
       },
       {
         id: '3',
         name: 'farhan',
         email: 't@a.w',
-        modified: 'today',
-        created: 'yesterday'
+        modified: '05-10-2019 14:56',
+        created: '05-10-2019 14:56'
       },
       {
         id: '4',
         name: 'alesha',
         email: 't@a.w',
-        modified: 'today',
-        created: 'yesterday'
+        modified: '05-10-2019 14:56',
+        created: '05-10-2019 14:56'
       }
     ],
     currentId: 4, // TODO, this sould be coming from backend
@@ -54,8 +56,11 @@ class App extends Component<{} & RouteComponentProps<{id: any, param: any}>, any
   }
 
   handleUpdate = (item: any, isnew: boolean = false) => {
+    const now = moment.default().format('DD-MM-YYYY HH:mm');
     if (isnew) {
       item.id = (this.state.currentId + 1).toString();
+      item.created = now;
+      item.modified = now;
       this.setState((state: any) => ({
         contacts: [...state.contacts, item],
         currentId: state.currentId + 1,
@@ -65,6 +70,7 @@ class App extends Component<{} & RouteComponentProps<{id: any, param: any}>, any
       if (contact) {
         contact.name = item.name;
         contact.email = item.email;
+        contact.modified = now;
 
         const newList = this.state.contacts.filter(contact => contact.id !== item.id);
         newList.push(contact);

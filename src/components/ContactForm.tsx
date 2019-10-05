@@ -7,6 +7,11 @@ import {
 } from "@material-ui/core";
 import { withRouter } from 'react-router-dom';
 
+// very basic email check
+const emailIsValid = (email: string) => {
+  return /\S+@\S+\.\S+/.test(email)
+}
+
 class ContactForm extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -34,6 +39,10 @@ class ContactForm extends React.Component<any, any> {
   };
 
   handleUpdate = () => {
+    if (this.state.contact.name === '' || !emailIsValid(this.state.contact.email)) {
+      window.alert('please enter valid name and email!');
+      return;
+    }
     this.props.handleUpdate(this.state.contact, this.state.isNew);
     this.props.history.push(`/contacts`);
   }

@@ -30,21 +30,21 @@ export default function ContactCard({ contact }:any) {
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h2">
-              {contact.name}
+              Name: {contact.name}
           </Typography>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-              {contact.email}
+              Email: {contact.email}
           </Typography>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-              {contact.modified}
+              Modified: {contact.modified}
           </Typography>
           <Typography className={classes.title} color="textSecondary" gutterBottom>
-              {contact.created}
+              Created: {contact.created}
           </Typography>
         </CardContent>
       </Card>
       <br />
-      <Link to="/contacts">Go to contact list</Link>
+      <Link to="/contacts">Back to contact list</Link>
     </React.Fragment>
   );
 }
