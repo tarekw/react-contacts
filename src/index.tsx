@@ -15,6 +15,8 @@ const routing = (
         <Route exact path="/" component={App} />
         <Route path="/contacts" component={App} />
         <Route path="/contact/:id" component={App} />
+        <Route path="/add" component={App} />
+        <Route path="/update/:id" component={App} />
       </Switch>
     </div>
   </Router>
