@@ -7,6 +7,10 @@ class App extends Component<any, any> {
   render() {
     const { match } = this.props;
 
+    if (!match) {
+      return null;
+    }
+
     if (match.path === '/') {
       return (
         <div className="App">
