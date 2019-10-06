@@ -13,7 +13,7 @@
 ### Bonuses
 
 - [ ] Use [xstate](https://xstate.js.org/docs) to manage app state. - Ongoing
-- [x] Connect to the graphql endpoint http://localhost:3001 by using create-react-app proxy feature (BRANCH - `withgql`)
+- [x] Connect to the graphql endpoint http://localhost:3001 by using create-react-app proxy feature
 - [x] Use the graphql endpoint to get/create/update/delete
 
 ### Additional Work (Ongoing)
