@@ -2,19 +2,19 @@
 
 ## Features to implement
 
-- List Contacts
-- View Contact
-- Add Contact
-- Delete Contact
-- Edit Contact
-- Clean routing i.e '/contact/:id'
-- Use material-ui for components
+- [x] List Contacts
+- [x]  View Contact
+- [x] Add Contact
+- [x] Delete Contact
+- [x] Edit Contact
+- [x] Clean routing i.e '/contact/:id'
+- [x] Use material-ui for components
 
 ### Bonuses
 
-- Use [xstate](https://xstate.js.org/docs) to manage app state.
-- Connect to the graphql endpoint http://localhost:3001 by using create-react-app proxy feature
-- Use the graphql endpoint to get/create/update/delete
+- [ ] Use [xstate](https://xstate.js.org/docs) to manage app state.
+- [x] Connect to the graphql endpoint http://localhost:3001 by using create-react-app proxy feature (BRANCH - `withgql`)
+- [x] Use the graphql endpoint to get/create/update/delete
 
 ### Contact
 
