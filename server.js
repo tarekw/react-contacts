@@ -4,6 +4,7 @@ const FileSync = require("lowdb/adapters/FileSync");
 const uid = require("nanoid");
 const adapter = new FileSync("contacts.json");
 const db = low(adapter);
+var moment = require('moment');
 
 db.defaults({
   contacts: []
@@ -24,7 +25,7 @@ const server = new ApolloServer({
     },
     Mutation: {
       async addContact(_, { contact }) {
-        let newContact = { ...contact, id: uid() };
+        let newContact = { ...contact, id: uid(), modified: moment().format('DD-MM-YYYY HH:mm'), created: moment().format('DD-MM-YYYY HH:mm') };
         await db
           .get("contacts")
           .push(newContact)
@@ -42,7 +43,7 @@ const server = new ApolloServer({
         await db
           .get("contacts")
           .find({ id: contact.id })
-          .assign({ ...contact })
+          .assign({ ...contact, modified: moment().format('DD-MM-YYYY HH:mm') })
           .write();
 
         return db
@@ -57,6 +58,8 @@ const server = new ApolloServer({
       id: ID
       name: String
       email: String
+      modified: String
+      created: String
     }
 
     input InputContact {
@@ -75,7 +78,15 @@ const server = new ApolloServer({
       deleteContact(id: ID): Boolean
       updateContact(contact: InputContact): Contact
     }
-  `
+  `,
+  formatError: error => {
+    console.log(error);
+    return error;
+  },
+  formatResponse: response => {
+    console.log(response);
+    return response;
+  },
 });
 
 server.listen(3001).then(() => {
