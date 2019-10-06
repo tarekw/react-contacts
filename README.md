@@ -1,6 +1,6 @@
 # Contact Manager
 
-## Features to implement
+## Features implemented as per spec
 
 - [x] List Contacts
 - [x]  View Contact
@@ -12,9 +12,15 @@
 
 ### Bonuses
 
-- [ ] Use [xstate](https://xstate.js.org/docs) to manage app state.
+- [ ] Use [xstate](https://xstate.js.org/docs) to manage app state. - Ongoing
 - [x] Connect to the graphql endpoint http://localhost:3001 by using create-react-app proxy feature (BRANCH - `withgql`)
 - [x] Use the graphql endpoint to get/create/update/delete
+
+### Additional Work (Ongoing)
+
+- [ ] Additional unit tests
+- [ ] Snapshot tests
+- [ ] Integration tests (e.g. testcafe/wdio)
 
 ### Contact
 
