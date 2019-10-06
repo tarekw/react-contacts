@@ -4,6 +4,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { Link } from "react-router-dom";
+import { Query } from '@apollo/react-components';
+
+import { GET_CONTACT } from './constants';
 
 const useStyles = makeStyles({
   card: {
@@ -22,29 +25,39 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ContactCard({ contact }:any) {
+export default function ContactCard({ match }:any) {
   const classes = useStyles();
+  const { id } = match.params;
 
   return (
     <React.Fragment>
-      <Card className={classes.card}>
-        <CardContent>
-          <Typography variant="h5" component="h2">
-              Name: {contact.name}
-          </Typography>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Email: {contact.email}
-          </Typography>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Modified: {contact.modified}
-          </Typography>
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
-              Created: {contact.created}
-          </Typography>
-        </CardContent>
-      </Card>
-      <br />
-      <Link to="/contacts">Back to contact list</Link>
+      <Query query={GET_CONTACT} variables={{ id }}>
+        {({ loading, error, data }:any) => {
+          if (loading) return <p>Loading...</p>;
+          if (error) return <p>Error :(</p>;
+
+          return (
+            <Card className={classes.card}>
+              <CardContent>
+                <Typography variant="h5" component="h2">
+                    Name: {data.contact.name}
+                </Typography>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    Email: {data.contact.email}
+                </Typography>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    Modified: {data.contact.modified}
+                </Typography>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                    Created: {data.contact.created}
+                </Typography>
+              </CardContent>
+            </Card>
+          );
+        }}
+      </Query>
+       <br />
+       <Link to="/contacts">Back to contact list</Link>
     </React.Fragment>
   );
 }
